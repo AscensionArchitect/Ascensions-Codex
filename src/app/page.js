@@ -1,4 +1,4 @@
-1 "use client";
+"use client";
 2 import { useState, useEffect } from "react";
 3
 4 // =====================================================
