@@ -54,12 +54,12 @@ const PRODUCTS = [
   },
   {
     id: 6,
-    title: "The 13:20 Activation Guide",
+    title: "How To Solve World Hunger — Algae + Aeroponics Blueprint",
     description:
-      "The 7-day protocol I used to shift from chaos to synchronicity after my 2019 near-death experience.",
-    url: "https://ascensionarchitect.gumroad.com/l/qkzksa",
-    format: "PDF · 7-day protocol",
-    label: "The protocol",
+      "A science-based, open-source guide for growing nutrient-dense food at home. Integrates microalgae cultivation with aeroponic agriculture into a closed-loop system. Phased implementation from consumption to backyard production to full integration. Decentralized food security, one node at a time.",
+    url: "https://ascensionarchitect.gumroad.com/l/gfzvfx",
+    format: "PDF · Open-source blueprint",
+    label: "The blueprint",
   },
   {
     id: 7,
