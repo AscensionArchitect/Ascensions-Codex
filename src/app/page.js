@@ -14,7 +14,7 @@ const AUTHOR = "Ascension Architect";
 const TAGLINE = "A living library exploring consciousness, reality, meaning, and the unknown.";
 const DISCORD_INVITE = "gXnEc7zu24";
 const DISCORD_URL = `https://discord.gg/${DISCORD_INVITE}`;
-const BMC_URL = "https://buymeacoffee.com/contactascw";
+const BMC_URL = "https://buymeacoffee.com/contactasc1";
 const CONTACT_EMAIL = "Contact.ascensionarchitect@gmail.com";
 
 // MailerLite — captured from your embed snippet, wired to the live forms at deploy.
