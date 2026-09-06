@@ -1052,16 +1052,52 @@ function Privacy() {
 // =====================================================
 
 export default function ArchitectCodex() {
+  const parseHashRoute = () => {
+    if (typeof window === "undefined") return { page: "home", param: null };
+    const raw = window.location.hash.replace(/^#\/?/, "");
+    if (!raw) return { page: "home", param: null };
+    const [page, ...rest] = raw.split("/");
+    const param = rest.length ? decodeURIComponent(rest.join("/")) : null;
+    const allowed = new Set(["home", "books", "book", "library", "category", "guide", "article", "community", "work", "about", "privacy", "search"]);
+    return allowed.has(page) ? { page, param } : { page: "home", param: null };
+  };
+
+  const routeToHash = (page, param = null) => {
+    if (page === "home" && !param) return "#/home";
+    return `#/${page}${param ? `/${encodeURIComponent(param)}` : ""}`;
+  };
+
   const [route, setRoute] = useState({ page: "home", param: null });
   const [query, setQuery] = useState("");
   const [menu, setMenu] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
 
   const go = (page, param = null) => {
-    setRoute({ page, param });
+    const next = { page, param };
+    setRoute(next);
     setMenu(false);
-    if (typeof window !== "undefined") window.scrollTo({ top: 0, behavior: "instant" });
+    if (typeof window !== "undefined") {
+      const nextHash = routeToHash(page, param);
+      if (window.location.hash !== nextHash) window.history.pushState(null, "", nextHash);
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
   };
+
+  useEffect(() => {
+    const syncFromUrl = () => {
+      setRoute(parseHashRoute());
+      setMenu(false);
+      window.scrollTo({ top: 0, behavior: "instant" });
+    };
+
+    syncFromUrl();
+    window.addEventListener("hashchange", syncFromUrl);
+    window.addEventListener("popstate", syncFromUrl);
+    return () => {
+      window.removeEventListener("hashchange", syncFromUrl);
+      window.removeEventListener("popstate", syncFromUrl);
+    };
+  }, []);
 
   const dismissModal = () => {
     setModalOpen(false);
