@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 // =====================================================
 // THE ARCHITECT CODEX — V2
-// A living library: books, library, community, sessions, search.
+// A living library: books, library, community, workshops, search.
 // Single-file preview. All content lives in the DATA block below —
 // add a book/guide/article = add one object. The pages build themselves.
 // =====================================================
@@ -62,7 +62,6 @@ const BOOKS = [
     ],
     relatedGuides: ["if-different", "toolkit"],
     relatedArticles: ["after-nde", "identity-after"],
-    sessionTopics: ["Consciousness", "Reality", "The Big Questions"],
   },
   {
     slug: "doorways",
@@ -84,7 +83,6 @@ const BOOKS = [
     ],
     relatedGuides: ["god-talks"],
     relatedArticles: ["map-territory"],
-    sessionTopics: ["Consciousness", "Philosophical Inquiry"],
   },
   {
     slug: "big-questions",
@@ -106,7 +104,6 @@ const BOOKS = [
     ],
     relatedGuides: [],
     relatedArticles: ["map-territory", "after-nde"],
-    sessionTopics: ["Meaning", "Life Direction", "The Big Questions"],
   },
   {
     slug: "the-shift",
@@ -125,7 +122,6 @@ const BOOKS = [
     companions: [],
     relatedGuides: [],
     relatedArticles: ["map-territory"],
-    sessionTopics: ["Civilization", "Consciousness", "The Big Questions"],
   },
 ];
 
@@ -361,15 +357,6 @@ const FEATURED_WORKSHOP = {
   ],
 };
 
-// Codex Sessions — paid 1:1 time, sold through Gumroad. Paste each product link into `url` when made.
-const SESSIONS = [
-  { id: "s60", name: "60 Minute Codex Session", price: "$125",
-    blurb: "A focused hour to open a question and follow it where it goes.", url: "https://ascensionarchitect.gumroad.com/l/zwpfda" },
-  { id: "s90", name: "90 Minute Codex Session", price: "$175",
-    blurb: "More room to go deep without watching the clock.", url: "https://ascensionarchitect.gumroad.com/l/ghwgea" },
-  { id: "s180", name: "3 Hour Codex Intensive", price: "$425",
-    blurb: "The deepest container. Space to take a question all the way to the bottom.", url: "https://ascensionarchitect.gumroad.com/l/kwyslp", featured: true },
-];
 
 const NAV = [
   { id: "home", label: "Home" },
@@ -378,7 +365,6 @@ const NAV = [
   { id: "community", label: "Community" },
   { id: "library", label: "Library" },
   { id: "workshop", label: "Live Workshop" },
-  { id: "work", label: "Sessions" },
   { id: "privacy", label: "Privacy" },
 ];
 
@@ -697,15 +683,6 @@ function Home({ go }) {
       </section>
 
       <section style={styles.section}>
-        <div style={styles.workCta}>
-          <div style={styles.sectionEyebrow}>Work With {AUTHOR}</div>
-          <h2 style={{ ...styles.sectionTitle, marginBottom: 18 }}>Codex Sessions</h2>
-          <p style={styles.sectionSubtitle}>One-to-one conversations on consciousness, reality, meaning, and the questions you want room to actually explore.</p>
-          <button onClick={() => go("work")} style={{ ...styles.btnGhost, marginTop: 24 }} className="btnGhostHover">Session Details</button>
-        </div>
-      </section>
-
-      <section style={styles.section}>
         <SectionHeader eyebrow="If It Moves You" title="Support the work" sub="If the Codex has helped you think deeper, explore further, or ask better questions, you can help keep the work moving." />
         <div style={{ textAlign: "center" }}>
           <a href={BMC_URL} target="_blank" rel="noopener noreferrer" style={styles.supportBtn} className="btnGhostHover">
@@ -738,7 +715,7 @@ function WorkshopPage({ go }) {
           {active ? (
             <a href={w.url} target="_blank" rel="noopener noreferrer" style={styles.btnPrimary} className="btnPrimaryHover">Reserve Your Seat — {w.price}</a>
           ) : (
-            <div style={styles.workshopEnded}>This live workshop has ended. The next session will appear here when it is announced.</div>
+            <div style={styles.workshopEnded}>This live workshop has ended. The next workshop will appear here when it is announced.</div>
           )}
         </div>
       </div>
@@ -767,7 +744,7 @@ function WorkshopPage({ go }) {
           {active ? (
             <a href={w.url} target="_blank" rel="noopener noreferrer" style={styles.btnPrimary} className="btnPrimaryHover">Reserve Your Seat — {w.price}</a>
           ) : (
-            <div style={styles.workshopEnded}>This live workshop has ended. The next session will appear here when it is announced.</div>
+            <div style={styles.workshopEnded}>This live workshop has ended. The next workshop will appear here when it is announced.</div>
           )}
         </div>
       </div>
@@ -837,15 +814,6 @@ function BookDetail({ slug, go }) {
             ))}
           </div>
         )}
-
-        <div style={styles.ecoCol}>
-          <div style={styles.ecoHead}>Session Topics</div>
-          {b.sessionTopics.map((t) => (
-            <div key={t} onClick={() => go("work")} style={styles.ecoItem} className="ecoItemHover">
-              <span style={styles.ecoName}>{t}</span>
-            </div>
-          ))}
-        </div>
       </div>
 
     </section>
@@ -997,52 +965,6 @@ function Community({ go }) {
   );
 }
 
-function Work() {
-  const TOPICS = ["Consciousness", "Reality", "Meaning", "Identity", "Life Direction", "Creative Work", "The Big Questions"];
-  const FAQ = [
-    ["What is a Codex Session?", "A focused one to one conversation. A thinking partnership on the questions you are actually living inside."],
-    ["How does it work?", "You book through the secure checkout, then you receive a link to choose your time. Bring the question. We follow it where it goes."],
-    ["Who is this for?", "People doing real inquiry who want a serious conversation partner."],
-  ];
-  const [open, setOpen] = useState(0);
-  return (
-    <section style={styles.section}>
-      <SectionHeader eyebrow={`Work With ${AUTHOR}`} title="Codex Sessions" sub="One-to-one conversations exploring consciousness, reality, meaning, and the questions that refuse to go away." />
-
-      <div style={styles.framing}>Not coaching. Not therapy. Not a belief system. A serious conversation for people taking the questions seriously.</div>
-
-      <div style={styles.topicWrap}>
-        {TOPICS.map((t) => <span key={t} style={styles.topicChip}>{t}</span>)}
-      </div>
-
-      <div style={styles.sessionGrid}>
-        {SESSIONS.map((s) => (
-          <div key={s.id} style={{ ...styles.sessionCard, ...(s.featured ? styles.sessionCardFeatured : {}) }}>
-            {s.featured && <div style={styles.sessionTag}>Deepest</div>}
-            <div style={styles.sessionName}>{s.name}</div>
-            <div style={styles.sessionPrice}>{s.price}</div>
-            <div style={styles.sessionBlurb}>{s.blurb}</div>
-            <a href={s.url || GUMROAD_STORE} target="_blank" rel="noopener noreferrer" style={styles.sessionBtn} className="btnPrimaryHover">Book a Codex Session</a>
-          </div>
-        ))}
-      </div>
-
-      <div style={styles.boundaries}>
-        Codex Sessions are educational and exploratory. They are not therapy, medical advice, mental health treatment, financial advice, or legal advice. The purpose is discussion, inquiry, exploration, and perspective.
-      </div>
-
-      <div style={{ maxWidth: 640, margin: "48px auto 0" }}>
-        <div style={styles.subHead}>Questions</div>
-        {FAQ.map(([q, a], i) => (
-          <div key={i} onClick={() => setOpen(open === i ? -1 : i)} style={styles.faqItem} className="faqHover">
-            <div style={styles.faqQ}><span>{q}</span><span>{open === i ? "−" : "+"}</span></div>
-            {open === i && <div style={styles.faqA}>{a}</div>}
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
 
 function Search({ go, query, setQuery }) {
   const q = query.trim().toLowerCase();
@@ -1187,7 +1109,6 @@ export default function ArchitectCodex() {
     case "article": body = <ArticleDetail slug={route.param} go={go} />; break;
     case "community": body = <Community go={go} />; break;
     case "workshop": body = <WorkshopPage go={go} />; break;
-    case "work": body = <Work />; break;
     case "about": body = <About go={go} />; break;
     case "privacy": body = <Privacy />; break;
     case "search": body = <Search go={go} query={query} setQuery={setQuery} />; break;
@@ -1247,7 +1168,6 @@ export default function ArchitectCodex() {
             <span onClick={() => go("community")} style={styles.footerLink} className="footerLinkHover">Community</span>
             <span onClick={() => go("library")} style={styles.footerLink} className="footerLinkHover">Library</span>
             {workshopIsActive() && <span onClick={() => go("workshop")} style={styles.footerLink} className="footerLinkHover">Live Workshop</span>}
-            <span onClick={() => go("work")} style={styles.footerLink} className="footerLinkHover">Sessions</span>
             <span onClick={() => go("privacy")} style={styles.footerLink} className="footerLinkHover">Privacy</span>
           </div>
           <div style={styles.footerCol}>
@@ -1489,22 +1409,6 @@ const styles = {
   socialIcon: { fontFamily: "var(--mono)", fontSize: 15, letterSpacing: "0.15em", color: "var(--gold)", marginBottom: 10 },
   socialName: { fontFamily: "var(--display)", fontStyle: "italic", fontSize: 17, color: "var(--ink)" },
   socialHandle: { fontFamily: "var(--mono)", fontSize: 10, color: "var(--inkFaint)", marginTop: 4, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" },
-
-  topicWrap: { display: "flex", gap: 10, flexWrap: "wrap", justifyContent: "center", maxWidth: 600, margin: "0 auto 36px" },
-  topicChip: { fontFamily: "var(--mono)", fontSize: 11, letterSpacing: "0.15em", color: "var(--inkSoft)", border: "1px solid var(--line)", padding: "10px 18px", textTransform: "uppercase" },
-  framing: { fontFamily: "var(--display)", fontStyle: "italic", fontSize: "clamp(20px,3vw,26px)", color: "var(--gold)", textAlign: "center", maxWidth: 640, margin: "0 auto 40px", lineHeight: 1.45 },
-  sessionGrid: { display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 20, marginBottom: 44 },
-  sessionCard: { position: "relative", width: 290, border: "1px solid var(--lineSoft)", background: "rgba(16,14,12,0.45)", padding: "36px 28px 30px", textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center" },
-  sessionCardFeatured: { border: "1px solid var(--gold)", background: "linear-gradient(160deg, rgba(201,168,76,0.09), rgba(16,14,12,0.5))" },
-  sessionTag: { position: "absolute", top: -11, left: "50%", transform: "translateX(-50%)", background: "var(--gold)", color: "var(--bg)", fontFamily: "var(--mono)", fontSize: 9, letterSpacing: "0.25em", textTransform: "uppercase", padding: "4px 14px" },
-  sessionName: { fontFamily: "var(--display)", fontStyle: "italic", fontSize: 22, color: "#f3ead2", marginBottom: 12, lineHeight: 1.25 },
-  sessionPrice: { fontFamily: "var(--display)", fontSize: 46, color: "var(--gold)", lineHeight: 1, marginBottom: 16 },
-  sessionBlurb: { fontFamily: "var(--body)", fontSize: 14.5, color: "var(--inkSoft)", lineHeight: 1.55, marginBottom: 24, minHeight: 66 },
-  sessionBtn: { display: "block", width: "100%", background: "transparent", color: "var(--gold)", border: "1px solid var(--gold)", padding: "13px 0", fontFamily: "var(--mono)", fontSize: 10.5, letterSpacing: "0.22em", textTransform: "uppercase", textDecoration: "none", cursor: "pointer" },
-  boundaries: { maxWidth: 640, margin: "0 auto", border: "1px solid var(--lineSoft)", padding: "22px 26px", fontFamily: "var(--body)", fontSize: 14, fontStyle: "italic", color: "var(--inkFaint)", lineHeight: 1.6, textAlign: "center" },
-  faqItem: { borderBottom: "1px solid var(--lineSoft)", padding: "20px 4px", cursor: "pointer" },
-  faqQ: { display: "flex", justifyContent: "space-between", alignItems: "center", fontFamily: "var(--display)", fontStyle: "italic", fontSize: 21, color: "var(--ink)" },
-  faqA: { fontFamily: "var(--body)", fontSize: 16, color: "var(--inkSoft)", lineHeight: 1.6, marginTop: 12 },
 
   searchBig: { width: "100%", maxWidth: 640, display: "block", margin: "0 auto", background: "rgba(11,10,9,0.6)", border: "1px solid var(--line)", color: "var(--ink)", padding: "18px 22px", fontFamily: "var(--body)", fontSize: 20, fontStyle: "italic" },
   searchCount: { fontFamily: "var(--mono)", fontSize: 10, letterSpacing: "0.2em", color: "var(--inkFaint)", textTransform: "uppercase", textAlign: "center", margin: "16px 0 30px" },
