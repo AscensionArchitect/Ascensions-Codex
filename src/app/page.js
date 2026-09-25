@@ -574,21 +574,21 @@ function Home({ go }) {
       </section>
 
       <section style={styles.section}>
-        <div style={styles.amazonFeature}>
-          <div style={styles.amazonFeatureCover}>
+        <div style={styles.amazonFeature} className="amazonFeature">
+          <div style={styles.amazonFeatureCover} className="amazonFeatureCover">
             <BookCover book={findBook("doorways")} w={190} />
           </div>
-          <div style={styles.amazonFeatureCopy}>
-            <div style={styles.sectionEyebrow}>Now on Amazon</div>
-            <h2 style={{ ...styles.sectionTitle, textAlign: "left" }}>The Doorways is now on Amazon.</h2>
-            <p style={styles.amazonFeatureLede}>A practical field guide to out-of-body experience, astral projection, remote viewing, Hemi-Sync, and the Monroe Focus States. Built for people who want the map, the practice, and the hard-earned details without the mystical fog.</p>
-            <div style={styles.amazonPriceRow}>
+          <div style={styles.amazonFeatureCopy} className="amazonFeatureCopy">
+            <div style={styles.sectionEyebrow} className="amazonFeatureEyebrow">Now on Amazon</div>
+            <h2 style={{ ...styles.sectionTitle, textAlign: "left" }} className="amazonFeatureTitle">The Doorways is now on Amazon.</h2>
+            <p style={styles.amazonFeatureLede} className="amazonFeatureLede">A practical field guide to out-of-body experience, astral projection, remote viewing, Hemi-Sync, and the Monroe Focus States. Built for people who want the map, the practice, and the hard-earned details without the mystical fog.</p>
+            <div style={styles.amazonPriceRow} className="amazonPriceRow">
               <span style={styles.amazonPrice}>$6.99</span>
-              <span style={styles.amazonEdition}>Kindle ebook</span>
+              <span style={styles.amazonEdition}>Kindle eBook</span>
             </div>
-            <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-              <a href={DOORWAYS_AMAZON_URL} target="_blank" rel="noopener noreferrer" style={styles.btnPrimary} className="btnPrimaryHover">Get The Doorways on Amazon</a>
-              <button onClick={() => go("book", "doorways")} style={styles.btnGhost} className="btnGhostHover">What’s Inside</button>
+            <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }} className="amazonActions">
+              <a href={DOORWAYS_AMAZON_URL} target="_blank" rel="noopener noreferrer" style={styles.btnPrimary} className="btnPrimaryHover amazonPrimaryCta">Get The Doorways on Amazon</a>
+              <button onClick={() => go("book", "doorways")} style={styles.btnGhost} className="btnGhostHover amazonSecondaryCta">What’s Inside</button>
             </div>
           </div>
         </div>
@@ -1158,9 +1158,29 @@ const globalStyles = `
   ::-webkit-scrollbar{width:6px;} ::-webkit-scrollbar-track{background:transparent;}
   ::-webkit-scrollbar-thumb{background:rgba(201,168,76,.2);border-radius:3px;}
   @media (max-width:780px){
-    .amazonFeature{grid-template-columns:1fr!important;}
+    .amazonFeature{
+      grid-template-columns:minmax(0,1fr)!important;
+      gap:26px!important;
+      padding:28px 22px!important;
+      width:100%!important;
+    }
+    .amazonFeatureCover{width:100%!important;justify-content:center!important;}
+    .amazonFeatureCover .coverArt{width:min(190px,62vw)!important;max-width:190px!important;}
+    .amazonFeatureCopy{width:100%!important;min-width:0!important;text-align:center!important;}
+    .amazonFeatureEyebrow{text-align:center!important;}
+    .amazonFeatureTitle{text-align:center!important;margin-left:auto!important;margin-right:auto!important;}
+    .amazonFeatureLede{text-align:center!important;max-width:560px!important;margin-left:auto!important;margin-right:auto!important;}
+    .amazonPriceRow{justify-content:center!important;}
+    .amazonActions{width:100%!important;justify-content:center!important;}
+    .amazonPrimaryCta,.amazonSecondaryCta{width:100%!important;text-align:center!important;justify-content:center!important;box-sizing:border-box!important;}
     .navLinksDesktop{display:none!important;}
     .navLinksMobile{display:block!important;}
+  }
+  @media (max-width:420px){
+    .amazonFeature{padding:24px 18px!important;gap:22px!important;}
+    .amazonFeatureCover .coverArt{width:min(176px,58vw)!important;}
+    .amazonFeatureTitle{font-size:34px!important;line-height:1.08!important;}
+    .amazonFeatureLede{font-size:16px!important;line-height:1.65!important;}
   }
 `;
 
